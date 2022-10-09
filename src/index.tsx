@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import HomePage from "./pages/HomePage";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
-import Header from "./components/header";
+import Header from "./components/Header";
 import styled from "@emotion/styled";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const MainStyle = styled.div`
   min-height: 100vh;
@@ -19,11 +22,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <CssBaseline />
-    <ThemeProvider theme={theme}>
-      <MainStyle>
-        <Header />
-        <App />
-      </MainStyle>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <MainStyle>
+          <Header />
+          <HomePage />
+        </MainStyle>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
