@@ -11,9 +11,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 const MainStyle = styled.div`
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  min-width: 100vw;
-  background-color: "#F4F4F3";
+  max-width: 100vw;
+  background-color: '#f4f4f4';
 `;
 
 const root = ReactDOM.createRoot(
