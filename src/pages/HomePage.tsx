@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
+import PokemonSearch from "../components/PokemonSearch";
 import PokemonsList from "../components/pokemons_list/PokemonsList";
 import PokemonsPagination from "../components/pokemons_list/PokemonsPagination";
 
@@ -16,6 +17,9 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      <Grid display="flex" width="100%" justifyContent="center" mt={4}>
+        <PokemonSearch></PokemonSearch>
+      </Grid>
       <Grid display="flex" flex={1}>
         <PokemonsList
           setPagination={setPagination}

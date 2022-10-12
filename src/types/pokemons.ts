@@ -31,6 +31,9 @@ export type APIPokemonDATA = {
       dream_world: {
         front_default: string;
       };
+      home: {
+        front_default: string;
+      }
     }
   }
 

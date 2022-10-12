@@ -114,7 +114,7 @@ const PokemonCard: React.FC<Props> = ({ url, loading = false }) => {
   return (
     <>
       <PokemonDialog
-        pokemon={pokemon}
+        url={url}
         open={openDialog}
         onClose={() => setOpenDialog(false)}
       />
