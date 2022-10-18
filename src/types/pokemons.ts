@@ -1,15 +1,13 @@
+import { GenericLite } from ".";
+import { LiteStat } from "./stats";
 import { LiteType } from "./types";
 
-type LitePokemon = {
-  name: string;
-  url: string;
-}
 
 export type APIPokemonsListDATA = {
   count: number;
   next: string;
   previous: string;
-  results: LitePokemon[];
+  results: GenericLite[];
 };
 
 export type APIPokemonDATA = {
@@ -18,6 +16,8 @@ export type APIPokemonDATA = {
   weight: number;
   height: number;
   types: LiteType[];
+  stats: LiteStat[];
+  species: GenericLite
   sprites: {
     back_default?: string,
     back_female?: string,
@@ -33,8 +33,10 @@ export type APIPokemonDATA = {
       };
       home: {
         front_default: string;
+      },
+      'official-artwork': {
+        front_default: string;
       }
     }
   }
-
 }
