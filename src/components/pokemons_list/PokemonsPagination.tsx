@@ -1,16 +1,44 @@
-import { IconButton, Stack, Tooltip, Typography, Paper, Grid } from "@mui/material";
+import {
+  IconButton,
+  Stack,
+  Typography,
+  Grid,
+  styled,
+  IconButtonProps,
+  StackProps,
+} from "@mui/material";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import React, { useState } from "react";
-import styled from "@emotion/styled";
 
-const MyPaper = styled(Paper)`
-  padding: '5px';
-  border-radius: 25px;
-  width: fit-content;
-  margin: 10px;
-  background-color: transparent;
-`
+const LeftButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
+  position: "fixed",
+  left: "20px",
+  top: `calc(50vh - 25px)`,
+  height: "50px",
+  width: "50px",
+  borderRadius: "10px",
+  border: `3px solid ${theme.palette.primary.main}`,
+  zIndex: "50",
+}));
+
+const RightButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
+  position: "fixed",
+  right: "20px",
+  top: `calc(50vh - 25px)`,
+  height: "50px",
+  width: "50px",
+  borderRadius: "10px",
+  border: `3px solid ${theme.palette.primary.main}`,
+  zIndex: "50",
+}));
+
+const LabelContainer = styled(Stack)<StackProps>(({ theme }) => ({
+  padding: "2px 10px",
+  border: `2px solid ${theme.palette.primary.main}`,
+  borderRadius: "5px",
+  marginBottom: "10px",
+}));
 
 type Props = {
   previous?: boolean;
@@ -28,40 +56,37 @@ const PokemonsPagination: React.FC<Props> = ({
   const [page, setPage] = useState<number>(1);
 
   return (
-    <Grid justifyContent='center' alignItems='center' display='flex'>
-      <MyPaper variant="outlined">
-        <Stack direction="row" spacing={10} alignItems="center">
-          <Tooltip title="Página anterior">
-            <IconButton
-              color="primary"
-              onClick={() => {
-                setPage(page - 1);
-                goPrevious();
-              }}
-              disabled={!previous}
-            >
-              <ArrowBackIosRoundedIcon />
-            </IconButton>
-          </Tooltip>
+    <Grid justifyContent="center" alignItems="center" display="flex">
+      <LabelContainer direction="row" alignItems="center">
+        <LeftButton
+          color="primary"
+          onClick={() => {
+            setPage(page - 1);
+            goPrevious();
+          }}
+          disabled={!previous}
+        >
+          <ArrowBackIosRoundedIcon />
+        </LeftButton>
 
-          <Typography variant="subtitle2" sx={{ fontSize: "20px" }}>
-            {page}
-          </Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{ fontSize: "20px", color: "#323232" }}
+        >
+          Page {page}
+        </Typography>
 
-          <Tooltip title="Próxima página">
-            <IconButton
-              color="primary"
-              onClick={() => {
-                setPage(page + 1);
-                goNext();
-              }}
-              disabled={!next}
-            >
-              <ArrowForwardIosRoundedIcon />
-            </IconButton>
-          </Tooltip>
-        </Stack>
-      </MyPaper>
+        <RightButton
+          color="primary"
+          onClick={() => {
+            setPage(page + 1);
+            goNext();
+          }}
+          disabled={!next}
+        >
+          <ArrowForwardIosRoundedIcon />
+        </RightButton>
+      </LabelContainer>
     </Grid>
   );
 };

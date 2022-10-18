@@ -1,4 +1,4 @@
-import { Autocomplete, TextField, Typography } from "@mui/material";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useMemo, useState } from "react";
@@ -59,44 +59,64 @@ const PokemonSearch: React.FC<Props> = () => {
 
   return (
     <>
-      <PokemonDialog
-        url={value?.value}
+      {openDialog && <PokemonDialog
+        url={value?.label ? `${API_URL}/pokemon/${value?.label.toLowerCase()}` : undefined}
         open={openDialog}
         onClose={() => {
           setOpenDialog(false);
           setValue(undefined);
         }}
-      ></PokemonDialog>
-      <Autocomplete
-        options={options}
-        sx={{ width: 300 }}
-        getOptionDisabled={(option) => option.label === "Carregando..."}
-        key={"pokemon-search-bar"}
-        disableClearable
-        inputValue={inputValue}
-        onInputChange={(_e, newValue) => setInputValue(newValue)}
-        renderOption={(_props, option: { label: string; value: string }) => {
-          return (
-            <Option
-              onClick={() => {
-                setValue(option);
-                setOpenDialog(true);
-                setInputValue("");
-              }}
-            >
-              <img src={pokeballTiny} alt="pokeball" />
-              {option?.label}
-            </Option>
-          );
+      />}
+
+      <Box
+        sx={{
+          backgroundColor: "white",
+          borderRadius: "5px",
+          p: "6px",
         }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Pesquise um pokémon"
-            placeholder="Pikachu"
-          />
-        )}
-      ></Autocomplete>
+      >
+        <Autocomplete
+          size="small"
+          options={options}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "0",
+              padding: "0",
+            },
+            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              border: "1px solid white",
+            },
+            width: "300px",
+          }}
+          getOptionDisabled={(option) => option.label === "Carregando..."}
+          key={"pokemon-search-bar"}
+          disableClearable
+          inputValue={inputValue}
+          onInputChange={(_e, newValue) => setInputValue(newValue)}
+          renderOption={(_props, option: { label: string; value: string }) => {
+            return (
+              <Option
+                key={`pokemon-option-${option?.label}`}
+                onClick={() => {
+                  setValue(option);
+                  setOpenDialog(true);
+                  setInputValue("");
+                }}
+              >
+                <img src={pokeballTiny} alt="pokeball" />
+                {option?.label}
+              </Option>
+            );
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search a pokemon"
+              placeholder="Pikachu"
+            />
+          )}
+        ></Autocomplete>
+      </Box>
     </>
   );
 };
