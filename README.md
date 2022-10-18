@@ -7,7 +7,7 @@ Projeto front-end de uma pokédex utilizando a [PokéApi](https://pokeapi.co/doc
 * [ReactJS](https://pt-br.reactjs.org/)
 * [Material-UI](https://mui.com/)
 * [Emotion](https://emotion.sh/docs/introduction/)
-* [Axios](https://axios-http.com/docs/intro)
+* [axios](https://axios-http.com/docs/intro)
 
 ### 
 
