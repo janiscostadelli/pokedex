@@ -5,9 +5,9 @@ Projeto front-end de uma pokédex utilizando a [PokéApi](https://pokeapi.co/doc
 ### 🛠️ Construído com
 
 * [ReactJS](https://pt-br.reactjs.org/)
+* [React Query](https://tanstack.com/query/v4/)
 * [Material-UI](https://mui.com/)
 * [Emotion](https://emotion.sh/docs/introduction/)
-* [React Query](https://tanstack.com/query/v4/)
 * [axios](https://axios-http.com/docs/intro)
 
 ### 
