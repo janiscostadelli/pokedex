@@ -1,11 +1,10 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
-import PokemonSearch from "../components/PokemonSearch";
 import PokemonsList from "../components/pokemons_list/PokemonsList";
 import PokemonsPagination from "../components/pokemons_list/PokemonsPagination";
 
 const HomePage: React.FC = () => {
-  const pageLimit: number = 20;
+  const pageLimit: number = 25;
   const [pageOffset, setPageOffset] = useState<number>(0);
   const [pagination, setPagination] = useState<{
     previous: boolean;
@@ -17,9 +16,6 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <Grid display="flex" width="100%" justifyContent="center" mt={4}>
-        <PokemonSearch></PokemonSearch>
-      </Grid>
       <Grid display="flex" flex={1}>
         <PokemonsList
           setPagination={setPagination}

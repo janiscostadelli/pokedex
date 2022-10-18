@@ -124,7 +124,10 @@ const PokemonCard: React.FC<Props> = ({ url, loading = false }) => {
       >
         <MyCard>
           <img
-            src={pokemon?.sprites?.other?.dream_world?.front_default}
+            src={
+              pokemon?.sprites?.other?.dream_world?.front_default ||
+              pokemon?.sprites?.other?.["official-artwork"]?.front_default
+            }
             alt="pokemon"
           />
           <Stack
@@ -143,7 +146,7 @@ const PokemonCard: React.FC<Props> = ({ url, loading = false }) => {
             <Stack direction="row" gap={2}>
               {pokemon?.types?.map((type) => (
                 <PokemonChipType
-                  key={type.type + url}
+                  key={`pokemon-type-${type.type.name}-${new Date()}`}
                   typeName={type.type.name}
                 ></PokemonChipType>
               ))}

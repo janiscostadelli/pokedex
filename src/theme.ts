@@ -12,7 +12,6 @@ const theme = createTheme({
       default: '#F4F4F3',
       paper: '#F4F4F3'
     },
-
   },
 });
 

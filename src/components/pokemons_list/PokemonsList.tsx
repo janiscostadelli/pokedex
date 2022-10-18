@@ -42,7 +42,7 @@ const PokemonsList: React.FC<Props> = ({
   return (
     <Stack direction="row" gap={2} flexWrap="wrap" justifyContent='center' padding={2}>
       {data?.results?.map((pokemon) => (
-        <PokemonCard key={pokemon.name} url={pokemon.url} />
+        <PokemonCard key={`pokemon-card-${pokemon.name}`} url={`${API_URL}/pokemon/${pokemon?.name}`} />
       ))}
     </Stack>
   );
